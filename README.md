@@ -42,7 +42,7 @@
 | Column     | Type       | Options                        |
 | -----------| -----------| -------------------------------|
 | user       | references | null: false, foreign_key: true |
-| items      | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
 
 ## Association
 
@@ -60,7 +60,7 @@
 | block         | string     | null: false                    |
 | building      | string     |                                |
 | phone_number  | integer    | null: false                    |
-| orders        | references | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 
 ## Association
 
