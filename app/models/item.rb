@@ -6,4 +6,17 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :days
   has_one_attached :image
+
+  with_potions presence: true do
+    validates :name
+    validates :text
+    validates :image
+    with_options numericality: { other_than:1 } do
+      validates :category_id
+      validates :status_id
+      validates :shipping:id
+      validates :area_id
+      validates :days_id
+    end
+  end
 end
