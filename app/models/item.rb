@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :user
   belongs_to :category
   belongs_to :status
   belongs_to :shipping
@@ -11,6 +12,7 @@ class Item < ApplicationRecord
     validates :name
     validates :text
     validates :image
+    validates :price, format: {with: /\A[0-9]+\z/}, numericality: {greater_than: 299,less_than: 9999999}
     with_options numericality: { other_than:1 } do
       validates :category_id
       validates :status_id
