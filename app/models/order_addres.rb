@@ -8,8 +8,7 @@ class OrderAddres
     validates :area_id, numericality: { other_than:1 }
     validates :city
     validates :block
-    validates :phone_number, length: { maximum: 12 }, numericality: { only_integer: true }
-    validates :order
+    validates :phone_number, length: { maximum: 11 }, numericality: { only_integer: true }
   end
 
   def save
