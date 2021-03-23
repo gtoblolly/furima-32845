@@ -10,6 +10,10 @@ RSpec.describe OrderAddres, type: :model do
       it "すべての値が正しく入力されていれば保存できること" do
         expect(@order_addres).to be_valid
       end
+      it "buildigは空でも保存できること" do
+        @order_addres.building = ""
+        expect(@order_addres).to be_valid
+      end
     end
 
     context "購入者情報の保存がうまくいかないとき" do
@@ -52,6 +56,16 @@ RSpec.describe OrderAddres, type: :model do
         @order_addres.token = ""
         @order_addres.valid?
         expect(@order_addres.errors.full_messages).to include("Token can't be blank")
+      end
+      it "user_idが空だと保存できない" do
+        @order_addres.user_id = ""
+        @order_addres.valid?
+        expect(@order_addres.errors.full_messages).to include("User can't be blank")
+      end
+      it "item_idが空だと保存できない" do
+        @order_addres.item_id = ""
+        @order_addres.valid?
+        expect(@order_addres.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
