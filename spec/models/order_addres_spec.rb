@@ -48,6 +48,11 @@ RSpec.describe OrderAddres, type: :model do
         @order_addres.valid?
         expect(@order_addres.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
+      it "tokenが空だと保存できない" do
+        @order_addres.token = ""
+        @order_addres.valid?
+        expect(@order_addres.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
