@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe OrderAddres, type: :model do
   before do
-    @order_addres = FactoryBot.build(:order_addres)
+    @item = FactoryBot.create(:item)
+    @user = FactoryBot.create(:user)
+    @order_addres = FactoryBot.build(:order_addres, item_id: @item.id, user_id: @user.id)
+    sleep 1
   end
   
   describe "購入者情報の保存" do
@@ -47,10 +50,20 @@ RSpec.describe OrderAddres, type: :model do
         @order_addres.valid?
         expect(@order_addres.errors.full_messages).to include("Phone number can't be blank", "Phone number is not a number")
       end
-      it "phone_nemberが12桁以上だと保存できない" do
+      it "phone_numberが12桁以上だと保存できない" do
         @order_addres.phone_number = "090123456789"
         @order_addres.valid?
         expect(@order_addres.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
+      it "phone_numberが全角だと保存できない" do
+        @order_addres.phone_number = "０９０１２３４５６７８"
+        @order_addres.valid?
+        expect(@order_addres.errors.full_messages).to include("Phone number is not a number")
+      end
+      it "phone_numberに数字以外が混じっていると保存できない" do
+        @order_addres.phone_number = "090abcd5678"
+        @order_addres.valid?
+        expect(@order_addres.errors.full_messages).to include("Phone number is not a number")
       end
       it "tokenが空だと保存できない" do
         @order_addres.token = ""

@@ -7,7 +7,5 @@ FactoryBot.define do
     block         {"横浜1-1"}
     building      {"スリーエイト瀬谷"}
     phone_number  {"09011112222"}
-    user_id       {1}
-    item_id       {2}
   end
 end
