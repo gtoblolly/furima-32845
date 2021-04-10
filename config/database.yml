@@ -52,4 +52,4 @@ production:
   database: furima_32845_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  cocket: /var/liv/mysql/mysql.sock
+  socket: /var/lib/mysql/mysql.sock
